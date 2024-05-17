@@ -1,7 +1,9 @@
-import React from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
+import { cartContext } from "../../../App";
 
-export default function ProductItems({ items, cart, setCart }) {
+export default function ProductItems({ items }) {
+  const { cart, setCart } = useContext(cartContext);
   const addToCart = (items) => {
     setCart([...cart, items]);
   };
@@ -13,7 +15,7 @@ export default function ProductItems({ items, cart, setCart }) {
   return (
     <>
       {items.map((items) => (
-        <React.Fragment key={items.id}>
+        <div key={items.id}>
           <div className="col mb-5">
             <div className="card h-100">
               {/* <!-- Sale badge--> */}
@@ -98,7 +100,7 @@ export default function ProductItems({ items, cart, setCart }) {
               </div>
             </div>
           </div>
-        </React.Fragment>
+        </div>
       ))}
     </>
   );

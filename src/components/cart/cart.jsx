@@ -1,4 +1,19 @@
+import { useContext, useState, useEffect } from "react";
+// import PropTypes from "prop-types";
+import { cartContext } from "../../App";
+
 export default function Cart() {
+  const { cart } = useContext(cartContext);
+
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    setTotal(
+      cart
+        .map((item) => item.price * item.quantity)
+        .reduce((prev, curr) => prev + curr, 0)
+    );
+  });
+
   return (
     // <!--
     //   Bootstrap docs: https://getbootstrap.com/docs
@@ -25,116 +40,52 @@ export default function Cart() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td data-th="Product">
-                    <div className="row">
-                      <div className="col-md-3 text-left">
-                        <img
-                          src="https://via.placeholder.com/250x250/5fa9f8/ffffff"
-                          alt=""
-                          className="img-fluid d-none d-md-block rounded mb-2 shadow "
-                        />
+                {cart.map((product) => (
+                  <tr key={product.id}>
+                    <td data-th="Product">
+                      <div className="row">
+                        <div className="col-md-3 text-left">
+                          <img
+                            src={product.thumbnail}
+                            alt=""
+                            className="img-fluid d-none d-md-block rounded mb-2 shadow "
+                          />
+                        </div>
+                        <div className="col-md-9 text-left mt-sm-2">
+                          <h4>{product.title}</h4>
+                        </div>
                       </div>
-                      <div className="col-md-9 text-left mt-sm-2">
-                        <h4>Product Name</h4>
-                        <p className="font-weight-light">Brand &amp; Name</p>
+                    </td>
+                    <td data-th="Price">
+                      {(
+                        product.price -
+                        (product.price * product.discountPercentage) / 100
+                      ).toFixed(2)}
+                    </td>
+                    <td data-th="Quantity">
+                      <input
+                        type="number"
+                        className="form-control form-control-lg text-center"
+                        value="1"
+                      />
+                    </td>
+                    <td className="actions" data-th="">
+                      <div className="text-right">
+                        <button className="btn btn-white border-secondary bg-white btn-md mb-2">
+                          <i className="fas fa-sync"></i>
+                        </button>
+                        <button className="btn btn-white border-secondary bg-white btn-md mb-2">
+                          <i className="fas fa-trash"></i>
+                        </button>
                       </div>
-                    </div>
-                  </td>
-                  <td data-th="Price">$49.00</td>
-                  <td data-th="Quantity">
-                    <input
-                      type="number"
-                      className="form-control form-control-lg text-center"
-                      value="1"
-                    />
-                  </td>
-                  <td className="actions" data-th="">
-                    <div className="text-right">
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-sync"></i>
-                      </button>
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-th="Product">
-                    <div className="row">
-                      <div className="col-md-3 text-left">
-                        <img
-                          src="https://via.placeholder.com/250x250/5fa9f8/ffffff"
-                          alt=""
-                          className="img-fluid d-none d-md-block rounded mb-2 shadow "
-                        />
-                      </div>
-                      <div className="col-md-9 text-left mt-sm-2">
-                        <h4>Product Name</h4>
-                        <p className="font-weight-light">Brand &amp; Name</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-th="Price">$49.00</td>
-                  <td data-th="Quantity">
-                    <input
-                      type="number"
-                      className="form-control form-control-lg text-center"
-                      value="1"
-                    />
-                  </td>
-                  <td className="actions" data-th="">
-                    <div className="text-right">
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-sync"></i>
-                      </button>
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-th="Product">
-                    <div className="row">
-                      <div className="col-md-3 text-left">
-                        <img
-                          src="https://via.placeholder.com/250x250/5fa9f8/ffffff"
-                          alt=""
-                          className="img-fluid d-none d-md-block rounded mb-2 shadow "
-                        />
-                      </div>
-                      <div className="col-md-9 text-left mt-sm-2">
-                        <h4>Product Name</h4>
-                        <p className="font-weight-light">Brand &amp; Name</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-th="Price">$49.00</td>
-                  <td data-th="Quantity">
-                    <input
-                      type="number"
-                      className="form-control form-control-lg text-center"
-                      value="1"
-                    />
-                  </td>
-                  <td className="actions" data-th="">
-                    <div className="text-right">
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-sync"></i>
-                      </button>
-                      <button className="btn btn-white border-secondary bg-white btn-md mb-2">
-                        <i className="fas fa-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
             <div className="float-right text-right">
               <h4>Subtotal:</h4>
-              <h1>$99.00</h1>
+              <h1>${total}</h1>
             </div>
           </div>
         </div>
