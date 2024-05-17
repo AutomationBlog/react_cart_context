@@ -56,9 +56,10 @@ export default function ProductItems({ items, cart, setCart }) {
                         ${items.price}
                       </span>
                       $
-                      {((items.price / 100) * items.discountPercentage).toFixed(
-                        2
-                      )}
+                      {(
+                        items.price -
+                        (items.price * items.discountPercentage) / 100
+                      ).toFixed(2)}
                     </div>
                   ) : (
                     <div className="fw-bolder">{items.price}</div>
