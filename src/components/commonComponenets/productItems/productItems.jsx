@@ -110,11 +110,6 @@ ProductItems.propTypes = {
   items: PropTypes.array.isRequired,
   id: PropTypes.number,
   name: PropTypes.string,
-  sales: PropTypes.boolean,
-  isOffer: PropTypes.boolean,
-  actualPrice: PropTypes.string.isRequired,
-  offerPrice: PropTypes.string.isRequired,
-  review: PropTypes.boolean,
-  cart: PropTypes.array.isRequired,
-  setCart: PropTypes.func.isRequired,
+  sales: PropTypes.func,
+  isOffer: PropTypes.func,
 };

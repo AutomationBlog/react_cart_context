@@ -1,6 +1,6 @@
 import "./menu.css";
 import "../styles.css";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { useContext } from "react";
@@ -60,8 +60,3 @@ export default function Menu() {
     </>
   );
 }
-
-Menu.propTypes = {
-  cart: PropTypes.array.isRequired,
-  setCart: PropTypes.func.isRequired,
-};

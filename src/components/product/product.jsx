@@ -1,7 +1,7 @@
 import "./product.css";
 import "../styles.css";
 import ProductItems from "../commonComponenets/productItems/productItems.jsx";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 const ProductDetails = [
   {
@@ -24,6 +24,7 @@ const ProductDetails = [
       "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
     ],
     sales: true,
+    quantity: 1,
   },
   {
     id: 2,
@@ -45,6 +46,7 @@ const ProductDetails = [
       "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
     ],
     sales: true,
+    quantity: 1,
   },
   {
     id: 3,
@@ -61,6 +63,7 @@ const ProductDetails = [
     thumbnail: "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
     images: ["https://cdn.dummyjson.com/product-images/3/1.jpg"],
     sales: true,
+    quantity: 1,
   },
   {
     id: 4,
@@ -82,6 +85,7 @@ const ProductDetails = [
       "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
     ],
     sales: true,
+    quantity: 1,
   },
   {
     id: 5,
@@ -102,6 +106,7 @@ const ProductDetails = [
       "https://cdn.dummyjson.com/product-images/5/3.jpg",
     ],
     sales: true,
+    quantity: 1,
   },
 ];
 
@@ -119,8 +124,3 @@ export default function Product() {
     </>
   );
 }
-
-Product.propTypes = {
-  cart: PropTypes.array.isRequired,
-  setCart: PropTypes.func.isRequired,
-};
