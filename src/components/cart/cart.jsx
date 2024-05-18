@@ -38,7 +38,12 @@ export default function Cart() {
                       }}
                     />
                   </td>
-                  <td>{items.price * items.quantity}</td>
+                  <td>
+                    {(
+                      items.price -
+                      (items.price * items.discountPercentage) / 100
+                    ).toFixed(2) * items.quantity}
+                  </td>
                 </tr>
               </>
             ))}
