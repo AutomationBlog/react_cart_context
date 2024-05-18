@@ -5,15 +5,27 @@ import Header from "./components/header/header.jsx";
 import Product from "./components/product/product.jsx";
 import Footer from "./components/footer/footer.jsx";
 import Cart from "./components/cart/cart.jsx";
+import CartFooter from "./components/cart/cartFooter.jsx";
 
 export const cartContext = createContext();
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [cardAmount, setCardAmount] = useState(0);
+  const [cardQuantity, setCardQuantity] = useState(cart.length);
 
   return (
     <>
-      <cartContext.Provider value={{ cart, setCart }}>
+      <cartContext.Provider
+        value={{
+          cart,
+          setCart,
+          cardAmount,
+          setCardAmount,
+          cardQuantity,
+          setCardQuantity,
+        }}
+      >
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -41,6 +53,7 @@ function ViewCart() {
     <>
       <Menu />
       <Cart />
+      <CartFooter />
     </>
   );
 }
